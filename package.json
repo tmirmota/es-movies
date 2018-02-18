@@ -1,0 +1,14 @@
+{
+  "name": "technical-challenge",
+  "version": "1.0.0",
+  "description": "frontend engineer - technical challenge",
+  "main": "client",
+  "scripts": {
+    "start": "node ./server/index.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "express": "^4.15.4"
+  }
+}
