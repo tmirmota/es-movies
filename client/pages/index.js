@@ -1,16 +1,23 @@
 import React, { Component } from 'react'
+import withRedux from 'next-redux-wrapper'
+import { initStore } from '../store'
+import { fetchMoviesSuccess } from '../actions/MovieActions'
+
 import { callApi } from '../utils/ApiUtils'
 import { MOVIES_LIST_URL } from '../constants/ApiConstants'
 
-export default class extends Component {
-  static async getInitialProps({ req }) {
+import MoviesContainer from '../containers/MoviesContainer'
+
+class Root extends Component {
+  static async getInitialProps({ store }) {
     const { json } = await callApi(MOVIES_LIST_URL)
-    return { movies: json }
+    if (json) {
+      store.dispatch(fetchMoviesSuccess(json))
+    }
   }
   render() {
-    const { movies } = this.props
-    console.log(movies.length)
-
-    return <div>This many movies {movies.length}</div>
+    return <MoviesContainer />
   }
 }
+
+export default withRedux(initStore, null, { fetchMoviesSuccess })(Root)
