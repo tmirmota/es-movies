@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import withRedux from 'next-redux-wrapper'
+import '../styles/style.scss'
 import { initStore } from '../store'
 import { fetchMoviesSuccess } from '../actions/MovieActions'
 

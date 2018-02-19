@@ -1,10 +1,12 @@
 import React from 'react'
+import { Input } from 'antd'
 
-const SearchInput = ({ value, search }) => (
-  <input
+const SearchInput = ({ search }) => (
+  <Input.Search
     name="search"
-    value={value}
-    onChange={ev => search(ev.target.value)}
+    onSearch={value => search(value)}
+    placeholder="Search for a movie title"
+    type="text"
   />
 )
 

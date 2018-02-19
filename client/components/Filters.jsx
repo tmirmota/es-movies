@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import { Button, Checkbox, Row, Col } from 'antd'
 
 class Filters extends Component {
   state = {
@@ -17,23 +18,24 @@ class Filters extends Component {
     const { displayFilters } = this.state
     return (
       <div>
-        <button onClick={this.toggleDisplay}>
+        <Button onClick={this.toggleDisplay}>
           {displayFilters ? 'Hide' : 'Show'} Filters
-        </button>
-        {displayFilters &&
-          filters.map(({ name, value }) => (
-            <div key={name}>
-              <label>
-                {name}
-                <input
+        </Button>
+        {displayFilters && (
+          <Row type="flex">
+            {filters.map(({ name, value }) => (
+              <Col key={name} span={4}>
+                <Checkbox
                   name={name}
                   checked={value}
                   onChange={this.toggleFilter}
-                  type="checkbox"
-                />
-              </label>
-            </div>
-          ))}
+                >
+                  {name}
+                </Checkbox>
+              </Col>
+            ))}
+          </Row>
+        )}
       </div>
     )
   }
