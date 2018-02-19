@@ -2,7 +2,6 @@ import React from 'react'
 import SearchInput from '../components/SearchInput'
 import Filters from '../components/Filters'
 import { Row, Col, Card } from 'antd'
-import { Link } from 'next/link'
 
 export default props => {
   const { movies, activeMovies, search, searchTitle, toggleGenre } = props
@@ -10,7 +9,7 @@ export default props => {
     <Row type="flex" justify="center">
       <Col span={8}>
         <SearchInput search={searchTitle} />
-        You searched for: {search.title}
+        {search.title && `You searched for: ${search.title}`}
       </Col>
       <Col span={20}>
         <Filters filters={search.genres} toggleFilter={toggleGenre} />
