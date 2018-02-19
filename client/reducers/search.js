@@ -5,8 +5,27 @@ const initialState = {
   genres: [],
 }
 
+const genres = (state = [], action) => {
+  switch (action.type) {
+    case types.TOGGLE_GENRE:
+      return [
+        ...state.filter(({ name }) => name !== action.name),
+        { name: action.name, value: action.value },
+      ]
+
+    default:
+      return state
+  }
+}
+
 const search = (state = initialState, action) => {
   switch (action.type) {
+    case types.FETCH_GENRES_SUCCESS:
+      return {
+        ...state,
+        genres: action.payload,
+      }
+
     case types.SEARCH_TITLE:
       return {
         ...state,
@@ -16,10 +35,7 @@ const search = (state = initialState, action) => {
     case types.TOGGLE_GENRE:
       return {
         ...state,
-        genres: [
-          ...state,genres,
-          [action.name]: action.payload
-        ]
+        genres: genres(state.genres, action),
       }
 
     default:
