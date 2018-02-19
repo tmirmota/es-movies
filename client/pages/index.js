@@ -10,13 +10,14 @@ import MoviesContainer from '../containers/MoviesContainer'
 
 class Root extends Component {
   static async getInitialProps({ store }) {
+
     const { json } = await callApi(MOVIES_LIST_URL)
     if (json) {
       store.dispatch(fetchMoviesSuccess(json))
     }
   }
   render() {
-    return <MoviesContainer />
+    return <MoviesContainer {...this.props} />
   }
 }
 
